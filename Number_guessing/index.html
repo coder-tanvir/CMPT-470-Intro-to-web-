@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" type="text/css" media="screen" href="style.css" />
+  </head>
+  <body>
+    <header>
+      <h1 class="name">Number Gussing!!!</h1>
+      <button class="buttonrestart">Restart</button>
+      <p class="Limit">Game range is between 1 and 20</p>
+      <div class="number">?</div>
+    </header>
+    <div class="leftright">
+      <div class="left">
+        <input type="number" class="guess" />
+        <button class="check">Check !</button>
+      </div>
+      <div class="right">
+        <p class="label-score">Score:<span class="score">20</span></p>
+        <p class="message">Start Guessing...</p>
+        <p class="label-highscore">
+          HighScore:<span class="highscore">0</span>
+        </p>
+      </div>
+    </div>
+    <script src="numberguessing.js"></script>
+  </body>
+</html>

@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>CMPT 470 Assignment 2</title>
+	<link rel="stylesheet" type="text/css" href=assignment2.css>
+</head>
+<body>
+	<h1 style="color: blue">
+		Information Server
+	</h1>
+	<form id="my-form">
+		<div>
+	   <label for="name">Name: </label>
+	   <input type="text" id="name" placeholder="Tanvir">
+	   </div>
+	   <br>
+	   <div>
+	   <label for="email">Email:</label>
+	   <input type="email" id="email" placeholder="abc@gmail.com">
+	   </div>
+	   <br>
+	   <div>
+	   <label for="birthday">Birth-day</label>
+	   <input type="date" id="birthday">
+	   </div>
+	   <br>
+	   <input class="btn" type="submit" value="Add to the DOM" >
+	   <br>
+ 	</form>
+    <br>
+    <button class="button1" onclick="sortbyname()">sort by name</button>
+    <button class="button2" onclick="sortbyemail()">sort by email</button>
+    <button class="button3" onClick="sortbydob()">sort by dob</button>
+    <button class="nutton3" onClick="sortbyage()">sort by age</button>
+    <br>
+    <br>
+ 	<table id="data-table" border="1">
+ 		<tr>
+ 			<th>Name</th>
+ 			<th>Email</th>
+ 			<th>BirthDay</th>
+ 			<th>Age</th>
+ 		</tr>
+ 					
+ 	</table>
+ 	<br>
+ 	<table id="sortnametable" border="1">
+ 	<tr>
+ 		<th>Name</th>
+ 		<th>Email</th>
+ 		<th>BirthDay</th>
+ 		<th>Age</th>
+ 	</tr>
+ 	</table>
+ 	<br>
+ 	 <table id="sortemailtable" border="1">
+ 	<tr>
+ 		<th>Name</th>
+ 		<th>Email</th>
+ 		<th>BirthDay</th>
+ 		<th>Age</th>
+ 	</tr>
+ 	</table>
+ 	<br>
+ 	 <table id="sortdobtable" border="1">
+ 	<tr>
+ 		<th>Name</th>
+ 		<th>Email</th>
+ 		<th>BirthDay</th>
+ 		<th>Age</th>
+ 	</tr>
+ 	</table>
+    <br>
+ 	 <table id="sortagetable" border="1">
+ 	<tr>
+ 		<th>Name</th>
+ 		<th>Email</th>
+ 		<th>BirthDay</th>
+ 		<th>Age</th>
+ 	</tr>
+ 	</table>
+ 	<br>
+   <footer style="color:black">
+   	<p>Created By Tanvir Khan</p>
+   </footer>
+
+ 
+ 	<script type="text/javascript">
+ 		var myForm=document.querySelector('#my-form');
+ 		var count=1;
+ 		var sumofallages=0;
+ 		var averageage=0;
+ 		var arrayindex=0;
+ 		var table=document.getElementsByTagName('table')[0];
+
+       function Person(name,email,dob,age){
+       	this.name=name;
+       	this.email=email;
+       	this.dob=dob;
+       	this.age=age;
+       }
+
+       var person1=new Person();
+       var person2=new Person();
+       var person3=new Person();
+       var personarray=["","",""];
+ 
+
+    
+    
+
+    myForm.addEventListener('submit',process);
+    function process(e){
+    	e.preventDefault();
+    	
+    	
+    	var nameinput=document.querySelector('#name');
+    	var emailinput=document.querySelector('#email');
+    	var birthdayinput=document.querySelector('#birthday');
+    	var birthyear=new Date(birthdayinput.value);
+    	var age=birthyear.getFullYear();
+    	var person1=new Person(nameinput.value,
+    		emailinput.value,birthdayinput.value,2020-age);
+        
+
+
+    	console.log(nameinput.value);
+    	console.log(emailinput.value);
+    	console.log(birthdayinput.value);
+    	console.info(2020-age);
+    	sumofallages=sumofallages+(2020-age);
+    	console.log(sumofallages);
+    	console.log(person1);
+
+
+
+    	// Find a <table> element with id="myTable":
+
+    	
+    	
+    	var newRow=table.insertRow(count);
+    	
+
+    	var cell1=newRow.insertCell(0);
+
+    	var cell2=newRow.insertCell(1);
+    	var cell3=newRow.insertCell(2);
+    	var cell4=newRow.insertCell(3);
+
+    	cell1.innerHTML=nameinput.value;
+    	cell2.innerHTML=emailinput.value;
+    	cell3.innerHTML=birthdayinput.value;
+    	cell4.innerHTML=(2020-age);
+        console.log(table.rows.length)
+    	count=count+1;
+    	console.log(count);
+        
+        personarray[arrayindex]=person1;
+        console.log(personarray[arrayindex]);
+        console.log(personarray[arrayindex].name);
+        arrayindex=arrayindex+1;
+    	nameinput.value='';
+    	emailinput.value='';
+    	birthdayinput.value='';
+
+    	if(count==4){
+          averageage=sumofallages/3;
+          console.log(averageage);
+          newRow=table.insertRow(count);
+          cell1=newRow.insertCell(0);
+          cell1.colSpan=4;
+          cell1.innerHTML=('The average age is:' + averageage);
+          console.log(table.rows.length)
+    	}
+    }
+
+    
+    function sortbyname(){
+
+    var i, j;  
+    for (i = 0; i < personarray.length -1; i++) {     
+      
+    // Last i elements are already in place  
+    for (j = 0; j < personarray.length-i-1; j++){  
+        if (personarray[j].name > personarray[j+1].name){
+         temp=personarray[j+1];
+         personarray[j+1]=personarray[j];
+         personarray[j]=temp;
+        }  
+               
+    }  
+}
+    console.log(personarray[0],personarray[1],personarray[2]);
+    
+
+    var table2 = document.getElementById("sortnametable");
+
+    var table2count=1;
+	for(table2count;table2count<=3;table2count++){
+		var table2newrow=table2count;
+		var table2row=table2.insertRow(table2newrow);
+		var cell1=table2row.insertCell(0);
+		var cell2=table2row.insertCell(1);
+		var cell3=table2row.insertCell(2);
+		var cell4=table2row.insertCell(3);
+
+		cell1.innerHTML=personarray[table2count-1].name;
+		cell2.innerHTML=personarray[table2count-1].email;
+		cell3.innerHTML=personarray[table2count-1].dob;
+		cell4.innerHTML=personarray[table2count-1].age;
+
+	}
+	var lastrow=4;
+	var table2lastrow=table2.insertRow(lastrow);
+    cell1=table2lastrow.insertCell(0);
+    cell1.colSpan=4;
+    cell1.innerHTML=('The average age is:' + averageage);
+
+    }
+
+    function sortbyemail(){
+
+    var i, j;  
+    for (i = 0; i < personarray.length -1; i++) {     
+      
+    // Last i elements are already in place  
+    for (j = 0; j < personarray.length-i-1; j++){  
+        if (personarray[j].email > personarray[j+1].email){
+         temp=personarray[j+1];
+         personarray[j+1]=personarray[j];
+         personarray[j]=temp;
+        }  
+               
+    }  
+}
+    console.log(personarray[0],personarray[1],personarray[2]);
+    
+
+    var table3 = document.getElementById("sortemailtable");
+
+    var table3count=1;
+	for(table3count;table3count<=3;table3count++){
+		var table3newrow=table3count;
+		var table3row=table3.insertRow(table3newrow);
+		var cell1=table3row.insertCell(0);
+		var cell2=table3row.insertCell(1);
+		var cell3=table3row.insertCell(2);
+		var cell4=table3row.insertCell(3);
+
+		cell1.innerHTML=personarray[table3count-1].name;
+		cell2.innerHTML=personarray[table3count-1].email;
+		cell3.innerHTML=personarray[table3count-1].dob;
+		cell4.innerHTML=personarray[table3count-1].age;
+
+	}
+	var lastrowtable3=4;
+	var table3lastrow=table3.insertRow(lastrowtable3);
+    cell1=table3lastrow.insertCell(0);
+    cell1.colSpan=4;
+    cell1.innerHTML=('The average age is:' + averageage);
+
+    }
+
+    function sortbydob(){
+    	var i, j;  
+    for (i = 0; i < personarray.length -1; i++) {     
+      
+    // Last i elements are already in place  
+    for (j = 0; j < personarray.length-i-1; j++){  
+        if (personarray[j].dob > personarray[j+1].dob){
+         temp=personarray[j+1];
+         personarray[j+1]=personarray[j];
+         personarray[j]=temp;
+        }  
+               
+    }  
+}
+    console.log(personarray[0],personarray[1],personarray[2]);
+    
+
+    var table4 = document.getElementById("sortdobtable");
+
+    var table4count=1;
+	for(table4count;table4count<=3;table4count++){
+		var table4newrow=table4count;
+		var table4row=table4.insertRow(table4newrow);
+		var cell1=table4row.insertCell(0);
+		var cell2=table4row.insertCell(1);
+		var cell3=table4row.insertCell(2);
+		var cell4=table4row.insertCell(3);
+
+		cell1.innerHTML=personarray[table4count-1].name;
+		cell2.innerHTML=personarray[table4count-1].email;
+		cell3.innerHTML=personarray[table4count-1].dob;
+		cell4.innerHTML=personarray[table4count-1].age;
+
+	}
+	var lastrowtable4=4;
+	var table4lastrow=table4.insertRow(lastrowtable4);
+    cell1=table4lastrow.insertCell(0);
+    cell1.colSpan=4;
+    cell1.innerHTML=('The average age is:' + averageage);
+
+    }
+
+function sortbyage(){
+    var i, j;  
+    for (i = 0; i < personarray.length -1; i++) {     
+      
+    // Last i elements are already in place  
+    for (j = 0; j < personarray.length-i-1; j++){  
+        if (personarray[j].age > personarray[j+1].age){
+         temp=personarray[j+1];
+         personarray[j+1]=personarray[j];
+         personarray[j]=temp;
+        }  
+               
+    }  
+}
+    console.log(personarray[0],personarray[1],personarray[2]);
+    
+
+    var table5 = document.getElementById("sortagetable");
+
+    var table5count=1;
+	for(table5count;table5count<=3;table5count++){
+		var table5newrow=table5count;
+		var table5row=table5.insertRow(table5newrow);
+		var cell1=table5row.insertCell(0);
+		var cell2=table5row.insertCell(1);
+		var cell3=table5row.insertCell(2);
+		var cell4=table5row.insertCell(3);
+
+		cell1.innerHTML=personarray[table5count-1].name;
+		cell2.innerHTML=personarray[table5count-1].email;
+		cell3.innerHTML=personarray[table5count-1].dob;
+		cell4.innerHTML=personarray[table5count-1].age;
+
+	}
+	var lastrowtable5=4;
+	var table5lastrow=table5.insertRow(lastrowtable5);
+    cell1=table5lastrow.insertCell(0);
+    cell1.colSpan=4;
+    cell1.innerHTML=('The average age is:' + averageage);
+
+    }
+
+
+
+        
+    	
+
+        
+    
+ 		
+
+ 	</script>
+    
+</body>
+</html>
